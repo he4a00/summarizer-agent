@@ -1,0 +1,159 @@
+{
+  "info": {
+    "name": "Quiz Generator API",
+    "description": "Complete API collection for testing the Quiz Generator endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3002/health",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3002",
+          "path": ["health"]
+        }
+      }
+    },
+    {
+      "name": "Quiz Service Info",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3002/api/v1/quiz",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3002",
+          "path": ["api", "v1", "quiz"]
+        }
+      }
+    },
+    {
+      "name": "Generate Quiz from Topic",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"topic\": \"JavaScript Promises and Async/Await\",\n  \"numQuestions\": 5\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3002/api/v1/quiz/topic",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3002",
+          "path": ["api", "v1", "quiz", "topic"]
+        }
+      }
+    },
+    {
+      "name": "Generate Quiz from PDF",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "pdf",
+              "type": "file",
+              "src": []
+            },
+            {
+              "key": "numQuestions",
+              "value": "5",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3002/api/v1/quiz/pdf",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3002",
+          "path": ["api", "v1", "quiz", "pdf"]
+        }
+      }
+    },
+    {
+      "name": "Test Validation - Invalid Topic",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"topic\": \"\",\n  \"numQuestions\": 5\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3002/api/v1/quiz/topic",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3002",
+          "path": ["api", "v1", "quiz", "topic"]
+        }
+      }
+    },
+    {
+      "name": "Summarize PDF Content",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "pdf",
+              "type": "file",
+              "src": []
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3002/api/v1/quiz/summarize",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3002",
+          "path": ["api", "v1", "quiz", "summarize"]
+        }
+      }
+    },
+    {
+      "name": "Test Validation - Too Many Questions",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"topic\": \"Node.js\",\n  \"numQuestions\": 25\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3002/api/v1/quiz/topic",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3002",
+          "path": ["api", "v1", "quiz", "topic"]
+        }
+      }
+    }
+  ]
+}
